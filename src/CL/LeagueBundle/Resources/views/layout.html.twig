@@ -23,10 +23,11 @@
         			<div class="container-fluid">
         				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         					<ul class="nav navbar-nav text-center">
-        						<li><a href="#">Home</a></li>
-        						<li><a href="#">Leagues</a>
-        						<li><a href="#">About</a></li>
-        						<li><a href="#">Join</a></li>
+        						<li><a href="{{ path('cl_homepage') }}">Home</a></li>
+        						<li><a href="#">Leagues</a></li>
+        						<li><a href="cl_show_all_teams">Teams</a></li>
+        						<li><a href="{{ path('cl_ouroffer') }}">Our offer</a></li>
+        						<li><a href="#">Register Your Team</a></li>
         					</ul>
         				</div>
         			</div>
@@ -34,11 +35,12 @@
         		</nav>
         	</div>
         	<div class="row">
-        		<div class="col-md-2">
+        		<div class="col-md-2" style="border-right:1px solid grey">
         			<!-- tutaj zawartość po lewej -->
+        			{% block leagueList %}{% endblock %}
 				        		
         		</div>"	  
-        		<div class="col-md-8">
+        		<div class="col-md-8" style="border-right:1px solid grey">
         			<!-- tutaj wszystko co w środku , zmienne -->
         			{% block body %}{% endblock %}		
         		</div>

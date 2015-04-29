@@ -1,0 +1,5 @@
+<ul>
+	{% for entity in entities %}
+		<li><a href="{{ path('cl_show_league', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
+	{% endfor %}	
+</ul>	

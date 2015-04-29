@@ -29,6 +29,11 @@ class League
     private $name;
 
 
+    public function __toString(){
+    	return (string)$this->getName();
+    }
+    
+    
     /**
      * Get id
      *

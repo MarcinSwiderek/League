@@ -5,59 +5,58 @@ namespace CL\LeagueBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use CL\LeagueBundle\Entity\Team;
-use CL\LeagueBundle\Form\TeamType;
+use CL\LeagueBundle\Entity\League;
+use CL\LeagueBundle\Form\LeagueType;
 
 /**
- * Team controller.
+ * League controller.
  *
  */
-class TeamController extends Controller
+class LeagueController extends Controller
 {
-
-	public function showAllTeamsAction(){
+	public function showLeagueAction($id) {
 		$em=$this->getDoctrine()->getManager();
-		$LeagueEntities=$em->getRepository('CLLeagueBundle:League')->findAll();
-		$TeamEntities=$em->getRepository('CLLeagueBundle:Team')->findAll();
+		$LeagueEntity=$em->getRepository('CLLeagueBundle:League')->findOneById($id);
+		$TeamEntities=$em->getRepository('CLLeagueBundle:Team')->findByLeague($id);
 		
-		return $this->render('CLLeagueBundle:Team:showAllTeams.html.twig', array(
-				'LeagueEntities'=>$LeagueEntities,
-				'TeamEntities'  =>$TeamEntities	
+		return $this->render('CLLeagueBundle:League:showLeague.html.twig',array(
+				'LeagueEntity'=>$LeagueEntity,
+				'TeamEntities'=>$TeamEntities
 		));
 	}
-	public function showTeamAction($id)
+	
+	public function listLeaguesAction() 
 	{
 		$em=$this->getDoctrine()->getManager();
-		$TeamEntity=$em->getRepository('CLLeagueBundle:Team')->findOneById($id);
-		$PlayerEntities=$em->getRepository('CLLeagueBundle:Player')->findByTeam($id);
 		
-		return $this->render('CLLeagueBundle:Team:showTeam.html.twig',array(
-				'TeamEntity'=>$TeamEntity,
-				'PlayerEntities'=>$PlayerEntities
+		$entities=$em->getRepository('CLLeagueBundle:League')->findAll();
+		
+		return $this->render('CLLeagueBundle:League:leagueList.html.twig',array(
+				'entities' => $entities
 		));
 	}
 	
     /**
-     * Lists all Team entities.
+     * Lists all League entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('CLLeagueBundle:Team')->findAll();
+        $entities = $em->getRepository('CLLeagueBundle:League')->findAll();
 
-        return $this->render('CLLeagueBundle:Team:index.html.twig', array(
+        return $this->render('CLLeagueBundle:League:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Team entity.
+     * Creates a new League entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Team();
+        $entity = new League();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -66,26 +65,26 @@ class TeamController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('team_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('league_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('CLLeagueBundle:Team:new.html.twig', array(
+        return $this->render('CLLeagueBundle:League:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Team entity.
+     * Creates a form to create a League entity.
      *
-     * @param Team $entity The entity
+     * @param League $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Team $entity)
+    private function createCreateForm(League $entity)
     {
-        $form = $this->createForm(new TeamType(), $entity, array(
-            'action' => $this->generateUrl('team_create'),
+        $form = $this->createForm(new LeagueType(), $entity, array(
+            'action' => $this->generateUrl('league_create'),
             'method' => 'POST',
         ));
 
@@ -95,60 +94,60 @@ class TeamController extends Controller
     }
 
     /**
-     * Displays a form to create a new Team entity.
+     * Displays a form to create a new League entity.
      *
      */
     public function newAction()
     {
-        $entity = new Team();
+        $entity = new League();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('CLLeagueBundle:Team:new.html.twig', array(
+        return $this->render('CLLeagueBundle:League:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Team entity.
+     * Finds and displays a League entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('CLLeagueBundle:Team')->find($id);
+        $entity = $em->getRepository('CLLeagueBundle:League')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Team entity.');
+            throw $this->createNotFoundException('Unable to find League entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CLLeagueBundle:Team:show.html.twig', array(
+        return $this->render('CLLeagueBundle:League:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Team entity.
+     * Displays a form to edit an existing League entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('CLLeagueBundle:Team')->find($id);
+        $entity = $em->getRepository('CLLeagueBundle:League')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Team entity.');
+            throw $this->createNotFoundException('Unable to find League entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CLLeagueBundle:Team:edit.html.twig', array(
+        return $this->render('CLLeagueBundle:League:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -156,16 +155,16 @@ class TeamController extends Controller
     }
 
     /**
-    * Creates a form to edit a Team entity.
+    * Creates a form to edit a League entity.
     *
-    * @param Team $entity The entity
+    * @param League $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Team $entity)
+    private function createEditForm(League $entity)
     {
-        $form = $this->createForm(new TeamType(), $entity, array(
-            'action' => $this->generateUrl('team_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new LeagueType(), $entity, array(
+            'action' => $this->generateUrl('league_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -174,17 +173,17 @@ class TeamController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Team entity.
+     * Edits an existing League entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('CLLeagueBundle:Team')->find($id);
+        $entity = $em->getRepository('CLLeagueBundle:League')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Team entity.');
+            throw $this->createNotFoundException('Unable to find League entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -194,17 +193,17 @@ class TeamController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('team_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('league_edit', array('id' => $id)));
         }
 
-        return $this->render('CLLeagueBundle:Team:edit.html.twig', array(
+        return $this->render('CLLeagueBundle:League:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Team entity.
+     * Deletes a League entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -214,21 +213,21 @@ class TeamController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CLLeagueBundle:Team')->find($id);
+            $entity = $em->getRepository('CLLeagueBundle:League')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Team entity.');
+                throw $this->createNotFoundException('Unable to find League entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('team'));
+        return $this->redirect($this->generateUrl('league'));
     }
 
     /**
-     * Creates a form to delete a Team entity by id.
+     * Creates a form to delete a League entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -237,7 +236,7 @@ class TeamController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('team_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('league_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

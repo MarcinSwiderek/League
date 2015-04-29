@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PlayerType extends AbstractType
+class LeagueType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,13 +15,7 @@ class PlayerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName')
-            ->add('lastName')
-            ->add('role')
-            ->add('birthday','date',array(
-            		'years'=>range(1950,2005)
-            ))
-            ->add('team')
+            ->add('name')
         ;
     }
     
@@ -31,7 +25,7 @@ class PlayerType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CL\LeagueBundle\Entity\Player'
+            'data_class' => 'CL\LeagueBundle\Entity\League'
         ));
     }
 
@@ -40,6 +34,6 @@ class PlayerType extends AbstractType
      */
     public function getName()
     {
-        return 'cl_leaguebundle_player';
+        return 'cl_leaguebundle_league';
     }
 }

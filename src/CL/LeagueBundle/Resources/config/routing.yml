@@ -1,11 +1,46 @@
-cl_league_team:
-    resource: "@CLLeagueBundle/Resources/config/routing/team.yml"
-    prefix:   /team
-
-cl_league_player:
+CLLeagueBundle_player:
     resource: "@CLLeagueBundle/Resources/config/routing/player.yml"
     prefix:   /player
 
+cl_league_league:
+    resource: "@CLLeagueBundle/Resources/config/routing/league.yml"
+    prefix:   /league/list
+
+CLLeagueBundle_team:
+        resource: "@CLLeagueBundle/Resources/config/routing/team.yml"
+        prefix:   /team
+    
 cl_league_homepage:
     path:     /hello/{name}
     defaults: { _controller: CLLeagueBundle:Default:index }
+
+cl_homepage:
+    path:     /
+    defaults: { _controller: CLLeagueBundle:Homepage:homepage }    
+  
+cl_ouroffer:
+    path:    /ouroffer
+    defaults:   
+        _controller: FrameworkBundle:Template:template 
+        template: CLLeagueBundle::ouroffer.html.twig
+    
+cl_show_league:
+    path:    /league/{id}
+    defaults:
+        _controller: CLLeagueBundle:League:showLeague
+        template: CLLeagueBundle:League:showLeague.html.twig
+        id: 1
+
+cl_show_team:
+    path:    /team/{id}
+    defaults:
+        _controller: CLLeagueBundle:Team:showTeam
+        template: CLLeagueBundle:Team:showTeam.html.twig        
+        id: 1
+
+cl_show_player:
+    path:    /player/{id}
+    defaults:
+        _controller: CLLeagueBundle:Player:showPlayer
+        template: CLLeagueBundle:Player:showPlayer.html.twig
+        id: 1        

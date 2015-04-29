@@ -42,6 +42,12 @@ class Team
      */
     private $league;
 
+    
+    public function __toString(){
+    	return (string)$this->getName();
+    }
+    
+    
     /**
      * Get id
      *

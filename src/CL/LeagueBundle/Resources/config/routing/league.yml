@@ -1,0 +1,30 @@
+league:
+    path:     /
+    defaults: { _controller: "CLLeagueBundle:League:index" }
+
+league_show:
+    path:     /{id}/show
+    defaults: { _controller: "CLLeagueBundle:League:show" }
+
+league_new:
+    path:     /new
+    defaults: { _controller: "CLLeagueBundle:League:new" }
+
+league_create:
+    path:     /create
+    defaults: { _controller: "CLLeagueBundle:League:create" }
+    methods:  POST
+
+league_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CLLeagueBundle:League:edit" }
+
+league_update:
+    path:     /{id}/update
+    defaults: { _controller: "CLLeagueBundle:League:update" }
+    methods:  [POST, PUT]
+
+league_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CLLeagueBundle:League:delete" }
+    methods:  [POST, DELETE]

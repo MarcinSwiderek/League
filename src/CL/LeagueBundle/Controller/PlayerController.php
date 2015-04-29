@@ -14,7 +14,17 @@ use CL\LeagueBundle\Form\PlayerType;
  */
 class PlayerController extends Controller
 {
-
+	
+	public function showPlayerAction($id)
+	{
+		$em=$this->getDoctrine()->getManager();
+		$entity=$em->getRepository('CLLeagueBundle:Player')->findOneById($id);
+		
+		return $this->render('CLLeagueBundle:Player:showPlayer.html.twig', array(
+				'entity'=>$entity
+		));
+		
+	}
     /**
      * Lists all Player entities.
      *
@@ -221,4 +231,6 @@ class PlayerController extends Controller
             ->getForm()
         ;
     }
+    
+    
 }

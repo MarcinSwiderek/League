@@ -1,0 +1,16 @@
+{% extends 'CLLeagueBundle::homepage.html.twig' %}
+{% block body %}
+	<div class="text-center">
+	
+		{{ LeagueEntity.name }}
+	</div>
+	<div>
+		<ul>
+			{% for entity in TeamEntities %}
+				<li><a href="{{ path('cl_show_team', { 'id': entity.id }) }}">{{ entity.name }}</a></li>		
+	
+	 	    {% endfor %}
+		</ul>
+	</div>"
+
+{% endblock body %}

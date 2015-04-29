@@ -97,4 +97,27 @@ class Team
     {
         return $this->teamPhotoUrl;
     }
+
+    /**
+     * Set league
+     *
+     * @param \CL\LeagueBundle\Entity\League $league
+     * @return Team
+     */
+    public function setLeague(\CL\LeagueBundle\Entity\League $league = null)
+    {
+        $this->league = $league;
+
+        return $this;
+    }
+
+    /**
+     * Get league
+     *
+     * @return \CL\LeagueBundle\Entity\League 
+     */
+    public function getLeague()
+    {
+        return $this->league;
+    }
 }
