@@ -51,12 +51,19 @@ class Player
     private $birthday;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="players")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
      * @var integer
      */
     
     private $team;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="hometeam")
+     * @var unknown
+     */
+    
+    private $matches;
 
     /**
      * Get id

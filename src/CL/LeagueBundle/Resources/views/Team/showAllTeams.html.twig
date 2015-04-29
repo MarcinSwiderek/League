@@ -1,0 +1,14 @@
+{% extends 'CLLeagueBundle::homepage.html.twig' %}
+{% block body %}
+	{% for leagueEntity in LeagueEntities %}
+		<h3><a href="{{ path('cl_show_league',{ 'id': leagueEntity.id }) }}">{{ leagueEntity.name }}</a></h3>
+		
+		<ol class="nav nav-pills nav-stacked">
+			
+			{% for teamEntity in leagueEntity.teams %}
+				{{ loop.index }}<li><a href="{{ path('cl_show_team', { 'id': teamEntity.id }) }}">{{ teamEntity.name }}</a></li>	
+			{% endfor %}
+		</ol>	
+	
+	{% endfor %}
+{% endblock body %}

@@ -36,11 +36,17 @@ class Team
     private $teamPhotoUrl;
 
     /**
-     * @ORM\ManyToOne(targetEntity="League")
+     * @ORM\ManyToOne(targetEntity="League", inversedBy="teams")
      * @ORM\JoinColumn(name="league_id", referencedColumnName="id")
      * @var integer
      */
     private $league;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="team")
+     * @var unknown
+     */
+    private $players;
 
     
     public function __toString(){
@@ -125,5 +131,45 @@ class Team
     public function getLeague()
     {
         return $this->league;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add players
+     *
+     * @param \CL\LeagueBundle\Entity\Player $players
+     * @return Team
+     */
+    public function addPlayer(\CL\LeagueBundle\Entity\Player $players)
+    {
+        $this->players[] = $players;
+
+        return $this;
+    }
+
+    /**
+     * Remove players
+     *
+     * @param \CL\LeagueBundle\Entity\Player $players
+     */
+    public function removePlayer(\CL\LeagueBundle\Entity\Player $players)
+    {
+        $this->players->removeElement($players);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 }

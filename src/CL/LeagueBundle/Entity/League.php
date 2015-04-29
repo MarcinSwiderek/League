@@ -28,6 +28,12 @@ class League
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="league")
+     * @var unknown
+     */
+    
+    private $teams;
 
     public function __toString(){
     	return (string)$this->getName();
@@ -65,5 +71,45 @@ class League
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add teams
+     *
+     * @param \CL\LeagueBundle\Entity\Team $teams
+     * @return League
+     */
+    public function addTeam(\CL\LeagueBundle\Entity\Team $teams)
+    {
+        $this->teams[] = $teams;
+
+        return $this;
+    }
+
+    /**
+     * Remove teams
+     *
+     * @param \CL\LeagueBundle\Entity\Team $teams
+     */
+    public function removeTeam(\CL\LeagueBundle\Entity\Team $teams)
+    {
+        $this->teams->removeElement($teams);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }

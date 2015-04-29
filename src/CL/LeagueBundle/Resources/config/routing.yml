@@ -1,3 +1,11 @@
+cl_league_game:
+    resource: "@CLLeagueBundle/Resources/config/routing/game.yml"
+    prefix:   /game
+
+cl_league_news:
+    resource: "@CLLeagueBundle/Resources/config/routing/news.yml"
+    prefix:   /news
+
 CLLeagueBundle_player:
     resource: "@CLLeagueBundle/Resources/config/routing/player.yml"
     prefix:   /player
@@ -23,6 +31,18 @@ cl_ouroffer:
     defaults:   
         _controller: FrameworkBundle:Template:template 
         template: CLLeagueBundle::ouroffer.html.twig
+       
+cl_facilities:
+    path:    /facilities
+    defaults:   
+        _controller: FrameworkBundle:Template:template 
+        template: CLLeagueBundle::facilities.html.twig        
+
+cl_about:
+    path:    /about
+    defaults:   
+        _controller: FrameworkBundle:Template:template 
+        template: CLLeagueBundle::about.html.twig
     
 cl_show_league:
     path:    /league/{id}
@@ -44,3 +64,10 @@ cl_show_player:
         _controller: CLLeagueBundle:Player:showPlayer
         template: CLLeagueBundle:Player:showPlayer.html.twig
         id: 1        
+
+cl_show_all_teams:
+    path:   /teams
+    defaults:
+        _controller: CLLeagueBundle:Team:showAllTeams
+        template: CLLLeagueBundle:Team:showAllTeams.html.twig
+        

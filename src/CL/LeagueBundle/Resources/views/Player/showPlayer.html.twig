@@ -1,9 +1,33 @@
 {% extends 'CLLeagueBundle::homepage.html.twig' %}
 {% block body %}
-	<div class="text-center">
-	
-		{{ entity.lastName }}
+	<div>
+		<table style="font-size:20px">
+			<tr>
+				<td>First Name:</td>
+				<td>{{ entity.firstName }}
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td>{{ entity.lastName }}</td>
+			</tr>	
+			<tr>
+				<td>Role:</td>
+				<td>{{ entity.role }}</td>
+			</tr>	
+			<tr>
+				<td>Team:</td>
+				<td>{{ entity.team }}</td>
+			</tr>	
+			<tr>
+				<td>Date Of Birth:</td>
+				<td>{{ entity.birthday | date("Y-m-d") }}</td>
+			</tr>	
+		</table>
 	</div>
+	<div>
+	<!-- stats -->
+	</div>
+	
 	
 
 {% endblock body %}

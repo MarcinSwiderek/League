@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Game list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Hometeam</th>
+                <th>Awayteam</th>
+                <th>League</th>
+                <th>Goalsfor</th>
+                <th>Goalsagainst</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('game_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.hometeam }}</td>
+                <td>{{ entity.awayteam }}</td>
+                <td>{{ entity.league }}</td>
+                <td>{{ entity.goalsFor }}</td>
+                <td>{{ entity.goalsAgainst }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('game_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('game_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('game_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

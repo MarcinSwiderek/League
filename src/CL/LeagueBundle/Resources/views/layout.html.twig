@@ -24,9 +24,10 @@
         				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         					<ul class="nav navbar-nav text-center">
         						<li><a href="{{ path('cl_homepage') }}">Home</a></li>
-        						<li><a href="#">Leagues</a></li>
-        						<li><a href="cl_show_all_teams">Teams</a></li>
+        						<li><a href="{{ path('cl_show_all_teams') }}">Teams</a></li>
         						<li><a href="{{ path('cl_ouroffer') }}">Our offer</a></li>
+        						<li><a href="{{ path('cl_about') }}">About us</a></li>
+        						<li><a href="{{ path('cl_facilities') }}">Facilities</a></li>
         						<li><a href="#">Register Your Team</a></li>
         					</ul>
         				</div>
@@ -46,7 +47,7 @@
         		</div>
         		<div class="col-md-2">
         			<!-- tutaj zawartość po prawej -->
-        		
+        			{% block rightBar %}{% endblock %}
         		</div>
         
         
