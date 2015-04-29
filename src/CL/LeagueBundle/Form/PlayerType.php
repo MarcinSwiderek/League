@@ -18,7 +18,9 @@ class PlayerType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('role')
-            ->add('birthday')
+            ->add('birthday','date',array(
+            		'years'=>range(1950,2005)
+            ))
         ;
     }
     
