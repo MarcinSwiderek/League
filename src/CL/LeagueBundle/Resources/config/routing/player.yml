@@ -1,0 +1,30 @@
+player:
+    path:     /
+    defaults: { _controller: "CLLeagueBundle:Player:index" }
+
+player_show:
+    path:     /{id}/show
+    defaults: { _controller: "CLLeagueBundle:Player:show" }
+
+player_new:
+    path:     /new
+    defaults: { _controller: "CLLeagueBundle:Player:new" }
+
+player_create:
+    path:     /create
+    defaults: { _controller: "CLLeagueBundle:Player:create" }
+    methods:  POST
+
+player_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CLLeagueBundle:Player:edit" }
+
+player_update:
+    path:     /{id}/update
+    defaults: { _controller: "CLLeagueBundle:Player:update" }
+    methods:  [POST, PUT]
+
+player_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CLLeagueBundle:Player:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+        	{% stylesheets 'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' 
+        	filter='cssrewrite' %}
+        	<link rel="stylesheet" href="{{ asset_url }}" />
+        	{% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+       
+        <div class="container-fluid">
+        	<div class="row">
+        		<!--tutaj top logo -->
+        	</div>
+        	<div class="row">
+        		<!-- menu -->
+        	</div>
+        	<div class="row">
+        		<div class="col-md-2">
+        			<!-- tutaj zawartość po lewej -->
+				        		
+        		</div>"	  
+        		<div class="col-md-8">
+        			<!-- tutaj wszystko co w środku , zmienne -->
+        			{% block body %}{% endblock %}		
+        		</div>
+        		<div class="col-md-2">
+        			<!-- tutaj zawartość po prawej -->
+        		
+        		</div>
+        
+        
+           	
+		
+		
+		
+		</div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

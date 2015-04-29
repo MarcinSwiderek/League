@@ -1,0 +1,11 @@
+cl_league_team:
+    resource: "@CLLeagueBundle/Resources/config/routing/team.yml"
+    prefix:   /team
+
+cl_league_player:
+    resource: "@CLLeagueBundle/Resources/config/routing/player.yml"
+    prefix:   /player
+
+cl_league_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: CLLeagueBundle:Default:index }
