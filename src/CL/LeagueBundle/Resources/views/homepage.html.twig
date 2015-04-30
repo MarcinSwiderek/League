@@ -2,4 +2,8 @@
 {% block leagueList %}
 	{{ render(controller("CLLeagueBundle:League:listLeagues")) }}
 {% endblock leagueList %}
+{% block body %}
+	{{ render(controller("CLLeagueBundle:News:showNewsList")) }}
+{% endblock %}
+
 

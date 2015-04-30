@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class NewsType extends AbstractType
+class RoundType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,8 +15,7 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('description')
+            ->add('leagueTable')
         ;
     }
     
@@ -26,7 +25,7 @@ class NewsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CL\LeagueBundle\Entity\News'
+            'data_class' => 'CL\LeagueBundle\Entity\Round'
         ));
     }
 
@@ -35,6 +34,6 @@ class NewsType extends AbstractType
      */
     public function getName()
     {
-        return 'cl_leaguebundle_news';
+        return 'cl_leaguebundle_round';
     }
 }

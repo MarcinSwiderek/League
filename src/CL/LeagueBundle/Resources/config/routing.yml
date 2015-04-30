@@ -1,14 +1,22 @@
+cl_league_leaguetable_list:
+    resource: "@CLLeagueBundle/Resources/config/routing/leaguetable.yml"
+    prefix:   /leaguetable/list
+
+cl_league_round_list:
+    resource: "@CLLeagueBundle/Resources/config/routing/round.yml"
+    prefix:   /round/list
+
 cl_league_game:
     resource: "@CLLeagueBundle/Resources/config/routing/game.yml"
-    prefix:   /game
+    prefix:   /game/list
 
 cl_league_news:
     resource: "@CLLeagueBundle/Resources/config/routing/news.yml"
-    prefix:   /news
+    prefix:   /news/list
 
 CLLeagueBundle_player:
     resource: "@CLLeagueBundle/Resources/config/routing/player.yml"
-    prefix:   /player
+    prefix:   /player/list
 
 cl_league_league:
     resource: "@CLLeagueBundle/Resources/config/routing/league.yml"
@@ -16,7 +24,7 @@ cl_league_league:
 
 CLLeagueBundle_team:
         resource: "@CLLeagueBundle/Resources/config/routing/team.yml"
-        prefix:   /team
+        prefix:   /team/list
     
 cl_league_homepage:
     path:     /hello/{name}
@@ -69,5 +77,18 @@ cl_show_all_teams:
     path:   /teams
     defaults:
         _controller: CLLeagueBundle:Team:showAllTeams
-        template: CLLLeagueBundle:Team:showAllTeams.html.twig
+        template: CLLeagueBundle:Team:showAllTeams.html.twig
+        
+cl_show_news:
+    path:   /news/{id}
+    defaults:
+        _controller: CLLeagueBundle:News:showNews
+        template: CLLeagueBundle:News:showNews.html.twig 
+        id: 1       
+
+cl_register_team:
+    path:   /register
+    defaults:
+        _controller: CLLeagueBundle:Team:registerTeam
+        template: CLLeagueBundle:Team:registerTeam.html.twig        
         

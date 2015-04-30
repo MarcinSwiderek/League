@@ -4,9 +4,11 @@ namespace CL\LeagueBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use CL\LeagueBundle\Entity\Player;
 use CL\LeagueBundle\Entity\Team;
 use CL\LeagueBundle\Form\TeamType;
+use CL\LeagueBundle\Form\TeamRegisterType;
+use CL\LeagueBundle\Form\PlayerRegisterType;
 
 /**
  * Team controller.
@@ -15,6 +17,24 @@ use CL\LeagueBundle\Form\TeamType;
 class TeamController extends Controller
 {
 
+	
+	public function registerTeamAction(){
+		$entity=new Team();
+		$form=$this->createForm(new TeamRegisterType(),$entity);
+		
+// 		if($form->isValid()){
+// 			$em = $this->getDoctrine()->getManager();
+// 			$em->persist($entity);
+// 			$em->flush();
+			
+// 			return $this->redirect($this->generateUrl('CLLeagueBundle:Player:registerPlayer.html.twig', array('team_id' => $entity->getId())));
+// 		}
+		return $this->render('CLLeagueBundle:Team:registerTeam.html.twig', array(
+				'entity' => $entity,
+				'form'   => $form->createView(),
+		));
+		
+	}
 	public function showAllTeamsAction(){
 		$em=$this->getDoctrine()->getManager();
 		$LeagueEntities=$em->getRepository('CLLeagueBundle:League')->findAll();

@@ -1,0 +1,30 @@
+round_list:
+    path:     /
+    defaults: { _controller: "CLLeagueBundle:Round:index" }
+
+round_list_show:
+    path:     /{id}/show
+    defaults: { _controller: "CLLeagueBundle:Round:show" }
+
+round_list_new:
+    path:     /new
+    defaults: { _controller: "CLLeagueBundle:Round:new" }
+
+round_list_create:
+    path:     /create
+    defaults: { _controller: "CLLeagueBundle:Round:create" }
+    methods:  POST
+
+round_list_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CLLeagueBundle:Round:edit" }
+
+round_list_update:
+    path:     /{id}/update
+    defaults: { _controller: "CLLeagueBundle:Round:update" }
+    methods:  [POST, PUT]
+
+round_list_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CLLeagueBundle:Round:delete" }
+    methods:  [POST, DELETE]

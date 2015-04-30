@@ -14,6 +14,17 @@ use CL\LeagueBundle\Form\PlayerType;
  */
 class PlayerController extends Controller
 {
+
+	
+	public function registerPlayersAction(){
+		$entity=new Player();
+		$form=$this->createForm(new PlayerRegisterType(),$entity);
+		
+		return $this->render('CLLeagueBundle:Team:registerPlayer.html.twig', array(
+				'entity' => $entity,
+				'form'   => $form->createView(),
+		));
+	}
 	
 	public function showPlayerAction($id)
 	{

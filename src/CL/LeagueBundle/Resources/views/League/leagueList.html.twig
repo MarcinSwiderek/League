@@ -1,5 +1,5 @@
 <ul class="nav nav-pills nav-stacked">
 	{% for entity in entities %}
-		<li style="border-bottom: 1px solid grey"><a href="{{ path('cl_show_league', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
+		<li style="border-bottom: 1px solid grey"><a href="{{ path('cl_show_league', { 'id': entity.id }) }}">{{ entity.name|upper }}</a></li>
 	{% endfor %}	
 </ul>

@@ -5,56 +5,37 @@ namespace CL\LeagueBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use CL\LeagueBundle\Entity\News;
-use CL\LeagueBundle\Form\NewsType;
+use CL\LeagueBundle\Entity\Round;
+use CL\LeagueBundle\Form\RoundType;
 
 /**
- * News controller.
+ * Round controller.
  *
  */
-class NewsController extends Controller
+class RoundController extends Controller
 {
 
-	public function showNewsListAction()
-	{
-		$em=$this->getDoctrine()->getManager();
-		$entities=$em->getRepository('CLLeagueBundle:News')->findAll();
-		
-		return $this->render('CLLeagueBundle:News:showNewsList.html.twig', array(
-				'entities' => $entities
-		));
-		
-	}
-	public function showNewsAction($id)
-	{
-		$em=$this->getDoctrine()->getManager();
-		$entity=$em->getRepository('CLLeagueBundle:News')->findOneById($id);
-		
-		return $this->render('CLLeagueBundle:News:showNews.html.twig', array(
-				'entity' => $entity
-		));
-	}
     /**
-     * Lists all News entities.
+     * Lists all Round entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('CLLeagueBundle:News')->findAll();
+        $entities = $em->getRepository('CLLeagueBundle:Round')->findAll();
 
-        return $this->render('CLLeagueBundle:News:index.html.twig', array(
+        return $this->render('CLLeagueBundle:Round:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new News entity.
+     * Creates a new Round entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new News();
+        $entity = new Round();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -63,26 +44,26 @@ class NewsController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('news_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('round_list_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('CLLeagueBundle:News:new.html.twig', array(
+        return $this->render('CLLeagueBundle:Round:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a News entity.
+     * Creates a form to create a Round entity.
      *
-     * @param News $entity The entity
+     * @param Round $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(News $entity)
+    private function createCreateForm(Round $entity)
     {
-        $form = $this->createForm(new NewsType(), $entity, array(
-            'action' => $this->generateUrl('news_create'),
+        $form = $this->createForm(new RoundType(), $entity, array(
+            'action' => $this->generateUrl('round_list_create'),
             'method' => 'POST',
         ));
 
@@ -92,60 +73,60 @@ class NewsController extends Controller
     }
 
     /**
-     * Displays a form to create a new News entity.
+     * Displays a form to create a new Round entity.
      *
      */
     public function newAction()
     {
-        $entity = new News();
+        $entity = new Round();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('CLLeagueBundle:News:new.html.twig', array(
+        return $this->render('CLLeagueBundle:Round:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a News entity.
+     * Finds and displays a Round entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('CLLeagueBundle:News')->find($id);
+        $entity = $em->getRepository('CLLeagueBundle:Round')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
+            throw $this->createNotFoundException('Unable to find Round entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CLLeagueBundle:News:show.html.twig', array(
+        return $this->render('CLLeagueBundle:Round:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing News entity.
+     * Displays a form to edit an existing Round entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('CLLeagueBundle:News')->find($id);
+        $entity = $em->getRepository('CLLeagueBundle:Round')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
+            throw $this->createNotFoundException('Unable to find Round entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CLLeagueBundle:News:edit.html.twig', array(
+        return $this->render('CLLeagueBundle:Round:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -153,16 +134,16 @@ class NewsController extends Controller
     }
 
     /**
-    * Creates a form to edit a News entity.
+    * Creates a form to edit a Round entity.
     *
-    * @param News $entity The entity
+    * @param Round $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(News $entity)
+    private function createEditForm(Round $entity)
     {
-        $form = $this->createForm(new NewsType(), $entity, array(
-            'action' => $this->generateUrl('news_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new RoundType(), $entity, array(
+            'action' => $this->generateUrl('round_list_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -171,17 +152,17 @@ class NewsController extends Controller
         return $form;
     }
     /**
-     * Edits an existing News entity.
+     * Edits an existing Round entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('CLLeagueBundle:News')->find($id);
+        $entity = $em->getRepository('CLLeagueBundle:Round')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
+            throw $this->createNotFoundException('Unable to find Round entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -191,17 +172,17 @@ class NewsController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('news_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('round_list_edit', array('id' => $id)));
         }
 
-        return $this->render('CLLeagueBundle:News:edit.html.twig', array(
+        return $this->render('CLLeagueBundle:Round:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a News entity.
+     * Deletes a Round entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -211,21 +192,21 @@ class NewsController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CLLeagueBundle:News')->find($id);
+            $entity = $em->getRepository('CLLeagueBundle:Round')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find News entity.');
+                throw $this->createNotFoundException('Unable to find Round entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('news'));
+        return $this->redirect($this->generateUrl('round_list'));
     }
 
     /**
-     * Creates a form to delete a News entity by id.
+     * Creates a form to delete a Round entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -234,7 +215,7 @@ class NewsController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('news_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('round_list_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

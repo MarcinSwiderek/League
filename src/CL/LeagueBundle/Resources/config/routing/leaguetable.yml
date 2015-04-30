@@ -1,0 +1,30 @@
+leaguetable_list:
+    path:     /
+    defaults: { _controller: "CLLeagueBundle:LeagueTable:index" }
+
+leaguetable_list_show:
+    path:     /{id}/show
+    defaults: { _controller: "CLLeagueBundle:LeagueTable:show" }
+
+leaguetable_list_new:
+    path:     /new
+    defaults: { _controller: "CLLeagueBundle:LeagueTable:new" }
+
+leaguetable_list_create:
+    path:     /create
+    defaults: { _controller: "CLLeagueBundle:LeagueTable:create" }
+    methods:  POST
+
+leaguetable_list_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CLLeagueBundle:LeagueTable:edit" }
+
+leaguetable_list_update:
+    path:     /{id}/update
+    defaults: { _controller: "CLLeagueBundle:LeagueTable:update" }
+    methods:  [POST, PUT]
+
+leaguetable_list_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CLLeagueBundle:LeagueTable:delete" }
+    methods:  [POST, DELETE]

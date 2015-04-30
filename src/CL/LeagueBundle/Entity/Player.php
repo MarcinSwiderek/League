@@ -57,7 +57,9 @@ class Player
      */
     
     private $team;
-    
+    public function __toString(){
+    	return $this->getFirstName();
+    }
     
 
     /**

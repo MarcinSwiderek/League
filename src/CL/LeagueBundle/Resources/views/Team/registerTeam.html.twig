@@ -1,0 +1,16 @@
+{% extends 'CLLeagueBundle::homepage.html.twig' %}
+{% block body %}
+{{ form(form) }}
+{# {{ form_start(form) }}#}
+{#     {# render the task's only field: description #}
+{#     {{ form_row(form.name) }}#}
+
+{#     <h3>Players</h3>#}
+{#     <ul class="tags" data-prototype="{{ form_widget(form.players.vars.prototype)|e }}">#}
+{#         {# iterate over each existing tag and render its only field: name #}
+{#         {% for player in form.players %}#}
+{#             <li>{{ form_row(player.firstName) }}</li>#}
+{#         {% endfor %}#}
+{#     </ul>#}
+{# {{ form_end(form) }}#}
+{% endblock %}
