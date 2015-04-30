@@ -16,6 +16,7 @@ class TeamType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('teamLogoUrl')
             ->add('teamPhotoUrl')
             ->add('league')
         ;

@@ -34,6 +34,13 @@ class League
      */
     
     private $teams;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="league")
+     * @var unknown
+     */
+    
+    private $games;
 
     public function __toString(){
     	return (string)$this->getName();
@@ -111,5 +118,38 @@ class League
     public function getTeams()
     {
         return $this->teams;
+    }
+
+    /**
+     * Add games
+     *
+     * @param \CL\LeagueBundle\Entity\Game $games
+     * @return League
+     */
+    public function addGame(\CL\LeagueBundle\Entity\Game $games)
+    {
+        $this->games[] = $games;
+
+        return $this;
+    }
+
+    /**
+     * Remove games
+     *
+     * @param \CL\LeagueBundle\Entity\Game $games
+     */
+    public function removeGame(\CL\LeagueBundle\Entity\Game $games)
+    {
+        $this->games->removeElement($games);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGames()
+    {
+        return $this->games;
     }
 }

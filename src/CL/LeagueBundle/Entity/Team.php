@@ -29,9 +29,15 @@ class Team
     private $name;
 
     /**
+     * @ORM\Column(name="team_logo_url", type="string", length=255, nullable=true)
+     * @var unknown
+     */
+    private $teamLogoUrl;
+    
+    /**
      * @var string
      *
-     * @ORM\Column(name="team_photo_url", type="string", length=255)
+     * @ORM\Column(name="team_photo_url", type="string", length=255, nullable=true)
      */
     private $teamPhotoUrl;
 
@@ -47,6 +53,14 @@ class Team
      * @var unknown
      */
     private $players;
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="hometeam")
+     * @var unknown
+     */
+    
+    private $matches;
 
     
     public function __toString(){
@@ -171,5 +185,61 @@ class Team
     public function getPlayers()
     {
         return $this->players;
+    }
+
+    /**
+     * Set teamLogoUrl
+     *
+     * @param string $teamLogoUrl
+     * @return Team
+     */
+    public function setTeamLogoUrl($teamLogoUrl)
+    {
+        $this->teamLogoUrl = $teamLogoUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get teamLogoUrl
+     *
+     * @return string 
+     */
+    public function getTeamLogoUrl()
+    {
+        return $this->teamLogoUrl;
+    }
+
+    /**
+     * Add matches
+     *
+     * @param \CL\LeagueBundle\Entity\Game $matches
+     * @return Team
+     */
+    public function addMatch(\CL\LeagueBundle\Entity\Game $matches)
+    {
+        $this->matches[] = $matches;
+
+        return $this;
+    }
+
+    /**
+     * Remove matches
+     *
+     * @param \CL\LeagueBundle\Entity\Game $matches
+     */
+    public function removeMatch(\CL\LeagueBundle\Entity\Game $matches)
+    {
+        $this->matches->removeElement($matches);
+    }
+
+    /**
+     * Get matches
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMatches()
+    {
+        return $this->matches;
     }
 }

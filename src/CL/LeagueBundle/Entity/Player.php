@@ -58,12 +58,7 @@ class Player
     
     private $team;
     
-    /**
-     * @ORM\OneToMany(targetEntity="Game", mappedBy="hometeam")
-     * @var unknown
-     */
     
-    private $matches;
 
     /**
      * Get id

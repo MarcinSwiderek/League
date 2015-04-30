@@ -57,6 +57,8 @@ class Player
      */
     
     private $team;
+    
+    
 
     /**
      * Get id

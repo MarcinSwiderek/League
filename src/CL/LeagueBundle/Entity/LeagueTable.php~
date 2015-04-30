@@ -1,0 +1,40 @@
+<?php
+
+namespace CL\LeagueBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * LeagueTable
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="CL\LeagueBundle\Entity\LeagueTableRepository")
+ */
+class LeagueTable
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Round", mappedBy="leagueTable")
+     * @var unknown
+     */
+    private $rounds;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
